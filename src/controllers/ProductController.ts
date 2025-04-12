@@ -32,6 +32,15 @@ class ProductController {
       next(error);
     }
   };
+
+  listAll = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const products = await this.productRepository.find();
+      res.status(200).json(products);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default new ProductController();
