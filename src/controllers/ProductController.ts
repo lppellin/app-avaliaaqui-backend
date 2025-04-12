@@ -9,12 +9,12 @@ class ProductController {
     this.productRepository = AppDataSource.getRepository(Product);
   }
 
-  create = async (req: Request, res: Response, next: NextFunction) => {
+  create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const { name, price, brand, description, image } = req.body;
 
       if (!name || !price || !brand) {
-        return res.status(400).json({ message: "Os campos 'nome', 'preço' e 'marca' são obrigatórios." });
+        res.status(400).json({ message: "Os campos 'nome', 'preço' e 'marca' são obrigatórios." });
       }
 
       const product = this.productRepository.create({
@@ -27,7 +27,7 @@ class ProductController {
 
       await this.productRepository.save(product);
 
-      return res.status(201).json(product);
+      res.status(201).json(product);
     } catch (error) {
       next(error);
     }
