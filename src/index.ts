@@ -12,6 +12,7 @@ import { handleError } from "./middlewares/handleError";
 
 import authRouter from "./routes/auth.routes";
 import logger from "./config/winston";
+import productRouter from "./routes/product.routes";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.json()); // Permite que o express entenda JSON
 
 app.use("/users", userRouter);
 app.use("/login", authRouter);
+app.use("/products", productRouter);
 
 app.get("/env", (req, res) => {
   res.json({
@@ -34,9 +36,7 @@ app.use(handleError);
 AppDataSource.initialize()
   .then(() => {
     app.listen(process.env.PORT, () => {
-      logger.info(
-        `O servidor está rodando em http://localhost:${process.env.PORT}`
-      );
+      logger.info(`O servidor está rodando em http://localhost:${process.env.PORT}`);
     });
   })
   .catch((error) => console.log(error));
