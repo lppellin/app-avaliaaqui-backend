@@ -41,6 +41,22 @@ class ProductController {
       next(error);
     }
   };
+
+  getById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const { id } = req.params;
+      const product = await this.productRepository.findOneBy({ id: Number(id) });
+
+      if (!product) {
+        res.status(404).json({ message: "Produto não encontrado." });
+        return;
+      }
+
+      res.status(200).json(product);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default new ProductController();
