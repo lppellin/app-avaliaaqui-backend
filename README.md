@@ -16,3 +16,13 @@ Este é o backend do projeto **AvaliaAqui**, desenvolvido em **TypeScript**. O p
 - **Node.js** (Versão mínima: 18.x)
 - **Express.js**
 - **PostgreSQL** (via `pg`)
+
+## Como Executar
+
+1. Clone o repositório:
+   `git clone  https://github.com/lppellin/app-avaliaaqui-backend.git`
+  
+3. Instale as dependências:
+  `npm install`
+4. Inicie o aplicativo:
+  `npm start`
